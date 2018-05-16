@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- mapper是映射文件配置 :统一定义sql语句标识的. namespace:可以随便定义唯一名称 但是使用mybatis的动态代理dao开发时,有规定特殊的意义(全类路径) -->
+<mapper namespace="com.huawei.support.mapper.UserMapper">
+
+	<!-- 根据用户id查询用户 -->
+	<select id="selectUserById" parameterType="Long"
+		resultType="com.huawei.support.entity.User">
+		select * from User where id = #{id}
+	</select>
+
+</mapper>

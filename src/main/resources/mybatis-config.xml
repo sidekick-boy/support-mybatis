@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<!-- mybatis全局配置文件configuration: 配置数据源,配置连接池,映射文件 -->
+<configuration>
+
+	<!-- 引入外部资源文件 -->
+	<properties resource="db.properties" />
+	<plugins>
+		<plugin interceptor="com.github.abel533.mapperhelper.MapperInterceptor">
+			<property name="IDENTITY" value="MYSQL" />
+			<property name="mappers" value="com.github.abel533.mapper.Mapper" />
+		</plugin>
+	</plugins>
+	<!-- environments: 配置多个环境 default:默认使用的环境 -->
+	<environments default="development">
+		<!-- environment : 配置单个环境 id : 当前环境的唯一标识 -->
+		<environment id="development">
+			<!-- transactionManager:事务管理器 mybatis使用原生的jdbc管理事务 -->
+			<transactionManager type="JDBC" />
+			<!-- dataSource:数据源 mybatis有哪些数据源? POOLED JNDI UNPOOLED -->
+			<dataSource type="POOLED">
+				<property name="driver" value="${jdbc.driver}" />
+				<property name="url" value="${jdbc.url}" />
+				<property name="username" value="${jdbc.username}" />
+				<property name="password" value="${jdbc.password}" />
+			</dataSource>
+		</environment>
+	</environments>
+	<!-- mappers引入多个映射文件: 有四种引入 常用 mapper class package 动态代理Dao开发模式可以使用: class 
+		package -->
+	<mappers>
+		<!-- 引入映射资源文件 -->
+		<!-- <mapper resource="UserMapper.xml"/> -->
+
+		<package name="com.huawei.support" />
+	</mappers>
+</configuration>
